@@ -1,0 +1,64 @@
+
+
+{% if user.is_authenticated %}
+<p> Signed in as {{ user.email }}</p>
+    {% if  user.Degree == None %}
+    <div class="container">
+        <form  method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <label>First Name</label>
+        <input name="fname" type="text" required><br>
+
+        <label >Last Name</label>
+        <input name="lname" type="text" required><br>
+
+        <label >College Name</label>
+        <input name="clgname" type="text"required><br>
+
+        <label>Degree</label>
+        <input name="degree" type="text" required><br>
+        <label >Passout Year</label>
+        <input name="passyear" type="text"required><br>
+        <label >Course</label>
+        <input name="course"type="text"required><br>
+        <label >School Name</label>
+        <input name="sclname" type="text" required><br>
+        <label >Age</label>
+        <input name="age"type="text"  required><br>
+
+
+            <button type="submit">Submit</button>
+        </form>
+
+    </div>
+
+{% else %}
+<p> <h2> User Details</h2>
+Name:
+{{ user.first_name }}
+{{ user.last_name }}<br>
+College :
+{{ user.college_name }}<br>
+Passout Year:
+{{ user.passout_year}}<br>
+Course:
+{{ user.course }}<br>
+Degree:
+{{ user.degree }}<br>
+School:
+{{ user.school_name }}<br>
+Age:
+{{ user.age }}
+    </p>
+    {% endif %}
+<a href="{% url 'account_logout' %}">Log Out</a>
+
+    {% else %}
+
+   <p>not logged in</p>
+   <a href="{% url 'account_login' %}">Log In</a>|<a href="{% url 'account_signup' %}">Sign Up</a>
+   {% endif %}
+<script>
+user.first_name=getElementByName(fname)
+</script>
